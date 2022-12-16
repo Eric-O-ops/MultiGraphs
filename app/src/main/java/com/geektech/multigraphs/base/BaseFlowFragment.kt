@@ -5,6 +5,7 @@ import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 
 abstract class BaseFlowFragment(
@@ -19,5 +20,10 @@ abstract class BaseFlowFragment(
             childFragmentManager.findFragmentById(idNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        getNavController(navController)
+    }
+
+    protected open fun getNavController(navController: NavController): NavController {
+        return navController
     }
 }

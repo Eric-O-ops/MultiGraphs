@@ -2,6 +2,7 @@ package com.geektech.multigraphs.ui.fragments.sign.`in`
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -9,6 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.geektech.multigraphs.R
 import com.geektech.multigraphs.data.locale.preferences.userdata.UserPreferencesData
 import com.geektech.multigraphs.databinding.FragmentSignInBinding
+import com.geektech.multigraphs.toastFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,14 +31,25 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private fun setupListener() {
         clickSignIn()
         clickSingUp()
+
     }
 
-    private fun clickSignIn() {
-        binding.buttonConfirm.setOnClickListener {
+    private fun clickSignIn() = with(binding) {
+        buttonConfirm.setOnClickListener {
             userPreferencesData.isAuthorized = true
-            requireActivity()
-                .findNavController(R.id.nav_host_fragment)
-                .navigate(R.id.action_global_mainFlowFragment)
+            val textLengthMail = editTextNumber.text.length
+            val textLengthPassword = editTextCode.text.length
+            val requireCountSymbols = 6
+
+            if (textLengthMail >= requireCountSymbols && textLengthPassword >= requireCountSymbols) {
+                requireActivity()
+                    .findNavController(R.id.nav_host_fragment)
+                    .navigate(R.id.action_global_mainFlowFragment)
+
+            } else {
+                toastFragment("Text must be more then 6 symbols")
+
+            }
         }
     }
 
