@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         this.setTheme(R.style.splashScreenTheme)
         setupNavigation()
+        val test = fun () {}
     }
 
     private fun setupNavigation() {

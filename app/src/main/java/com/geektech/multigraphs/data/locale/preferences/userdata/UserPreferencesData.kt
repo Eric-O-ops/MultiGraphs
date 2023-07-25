@@ -8,10 +8,10 @@ class UserPreferencesData(
 ) {
     var isAuthorized: Boolean
         get() = preferences().getBoolean(
-            PreferencesConstants.USER_SING_IN, false
+            PreferencesConstants.PREF_IS_AUTHORIZED, false
         )
         set(value) = preferences()
             .edit().putBoolean(
-                PreferencesConstants.USER_SING_IN, value
+                PreferencesConstants.PREF_IS_AUTHORIZED, value
             ).apply()
 }
